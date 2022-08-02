@@ -1,14 +1,7 @@
-# YOLOv5 Object Detection with Russian Military Vehicles
+# Classification and Object Detection with Russian Military Vehicles
 
-Huge thanks to:
- - Glen Jocher (https://docs.ultralytics.com/) for developing such a sophisticated and user friendly architecture and model...not to mention his (or his team's) active responses on the forums.  
- - Tuomo Hiippala (https://www.mv.helsinki.fi/home/thiippal/) for providing his data set. This project would not have been possible without his generousity.
- 
-Leveraging a deep learning model to predict types of Russian military vehicles from the deluge of social media posts can dramatically reduce the subsequent workload required for human curation and analysis. Here, I implement a deep learning model (YOLOv5) that is able to, once trained, take in images or video (or URL) locate Russian military vehicles within an image/video and classify the vehicle type. 
- 
-**[Note: View the notebook (ipynb) here](https://nbviewer.org/github/MLDavies/yolov5_object_detection_russian_vehicles/blob/main/YOLOv5_russian_military_vehicles.ipynb)**
+The large number of social media produced images, particularly of Russian military vehicles, creates the potential for novel open-source collection and analysis of where the conflict is taking place and how it's being fought. However, manually sorting through the deluge of images is time intensive, and may be an untenable task. We implemented both an image classification, specifically ResNet50, and (multiple) object detection models, specifically YOLOv5 to explore which method better serves the goal of triaging and classifying Russian military vehicles. Ultimately, our most performant model was YOLOv5. With hyperparameter tuning and data augmentation methods, we were able to correctly classify up to 73% of images using ResNet50 and approximately 90% of images using YOLOv5.  Notably, with our YOLOv5, in addition to conventional finetuning, our final model achieved good performance by ensembling two learners and implementing test-time augmentation.
 
-**[Open directly in Google Colab here](https://colab.research.google.com/github/MLDavies/yolov5_object_detection_russian_vehicles/blob/main/YOLOv5_russian_military_vehicles_writeup.ipynb)**
+The dataset, generously provided by Tuomo Hiippala, University of Helsinki, Finland, Department of Geosciences and Geography, contains 993 images across 10 classes of Russian military vehicles. The number of images per class range from 103 to 156. Although this is not perfect class balance, it should be sufficiently close that it does not degrade the model performance. Finally, we split the data 80% training, 10% validation, 10% test.
 
-**[The notebook clones the data from the repo here](https://github.com/MLDavies/russian-military-vehicles-annotated)**
-
+Data for both object detection and classification is maintained here: https://github.com/MLDavies/russian-military-vehicles-annotated For classification, we use the images as they are. However, for object detection, we need to annotate or label the images with bounding boxes around the image.
